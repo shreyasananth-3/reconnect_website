@@ -34,6 +34,10 @@ jobs:
           # Google Apps Script Web App that records form submissions to the
           # leads sheet (public by nature — NEXT_PUBLIC_* is exposed client-side).
           NEXT_PUBLIC_LEADS_ENDPOINT: https://script.google.com/macros/s/AKfycbweC7RwlimNZiVs-iH2GFLjl4eVt5vLnrpGpdrWYkedyQ9DXpm0Rgq-1sZ9xBDNKeMy/exec
+          # Public booking API ORIGIN (no /v1/api — lib/booking.ts appends the path).
+          # Points at staging; the booking flow goes live once the backend deploys
+          # the public/appointment/* routes there and allows the reconnect.health origin.
+          NEXT_PUBLIC_API_BASE: https://stage.reconnect.health
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
