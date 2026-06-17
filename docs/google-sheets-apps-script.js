@@ -52,6 +52,9 @@ var FIELDS = [
   ['Recommended Track',   'recommendedTrack'],
   ['Page',                'page'],
   ['User Agent',          'userAgent'],
+  // Appended at the END so adding it doesn't shift existing columns on a live
+  // sheet. Holds the chosen consultation slot for booking leads.
+  ['Appointment Slot',    'slot'],
 ];
 
 // The leads spreadsheet (from its URL: /spreadsheets/d/<THIS ID>/edit).

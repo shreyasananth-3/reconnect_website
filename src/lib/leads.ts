@@ -24,6 +24,8 @@ export interface LeadPayload {
   concern?: string;
   /** Preferred track (contact form). */
   track?: string;
+  /** Chosen consultation slot, human-readable (e.g. "Wednesday, 17 June at 10:00 AM"). */
+  slot?: string;
   message?: string;
   /** Assessment-only clinical context. */
   severity?: string;

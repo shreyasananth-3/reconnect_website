@@ -271,6 +271,19 @@ export default function ContactForm() {
 				concernArea: concernLabel || undefined,
 			});
 			setHold(result);
+			// Capture the chosen slot in the leads sheet the moment a booking is held
+			// — so it's recorded for everyone who books, even if they never click
+			// "I've completed the payment".
+			void submitLead({
+				source: 'Contact form',
+				name: form.name,
+				email: form.email,
+				phone: form.phone,
+				concern: concernLabel,
+				track: TRACKS.find((t) => t.v === form.track)?.l ?? form.track,
+				slot: formatSlot(selectedSlot),
+				message: `BOOKED (hold #${result.pendingBookingId}) — awaiting ₹500 payment.`,
+			});
 			setStep('payment');
 		} catch (err) {
 			const status = (err as BookingError)?.status;
@@ -314,6 +327,7 @@ export default function ContactForm() {
 			name: form.name,
 			email: form.email,
 			phone: form.phone,
+			slot: selectedSlot ? formatSlot(selectedSlot) : undefined,
 			message: hold
 				? `PAYMENT CLAIMED for booking #${hold.pendingBookingId} — please verify the ₹500 payment.`
 				: 'PAYMENT CLAIMED — please verify the ₹500 payment.',
@@ -440,7 +454,10 @@ export default function ContactForm() {
 							</span>
 						</p>
 
-						{hold && <HoldCountdown expiresAt={hold.holdExpiresAt} />}
+						{/* The hold countdown is "pay before it lapses" urgency — once the
+						    user clicks "I've completed the payment", that no longer applies,
+						    so hide it (the acknowledgement below replaces it). */}
+						{hold && !paymentClaimed && <HoldCountdown expiresAt={hold.holdExpiresAt} />}
 
 						{/* Reconnect-branded UPI QR (brand name + scan label baked into the
                 artwork — no personal name). */}
