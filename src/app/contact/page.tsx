@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import { SkeletonSvg } from "@/components/AnatomicalArt";
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 
 type Way = {
   label: string;
-  body: string;
   actionLabel: string;
   href: string;
   primary?: boolean;
@@ -22,32 +20,27 @@ type Way = {
 const ways: Way[] = [
   {
     label: "Book a consultation",
-    body: "Reconnect's clinical team to talk through your situation.",
     actionLabel: "Open booking →",
     href: "#contact-form",
     primary: true,
   },
   {
     label: "Email",
-    body: "Best for detailed questions or sharing reports.",
     actionLabel: "drshruthi@reconnect.health",
     href: "mailto:drshruthi@reconnect.health",
   },
   {
     label: "WhatsApp / phone",
-    body: "Quickest for short questions.",
     actionLabel: "+91 80889 11265",
     href: "tel:+918088911265",
   },
   {
     label: "Instagram",
-    body: "Behind-the-scenes from the clinic and patient stories (with consent).",
     actionLabel: "@reconnectwellness",
     href: "https://instagram.com",
   },
   {
     label: "LinkedIn",
-    body: "Connect with our team professionally.",
     actionLabel: "Reconnect Wellness",
     href: "https://linkedin.com",
   },
@@ -104,7 +97,7 @@ export default function ContactPage() {
                     href={w.href}
                     target={w.href.startsWith("http") ? "_blank" : undefined}
                     rel={w.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className={`group flex items-start justify-between gap-6 py-5 ${
+                    className={`group flex items-center justify-between gap-6 py-5 ${
                       i !== ways.length - 1 ? "border-b border-line" : ""
                     }`}
                   >
@@ -112,9 +105,8 @@ export default function ContactPage() {
                       <p className={`text-eyebrow ${w.primary ? "text-clay" : "text-ink-soft"}`}>
                         {w.label}
                       </p>
-                      <p className="text-body text-ink mt-2 break-words">{w.body}</p>
                     </div>
-                    <span className="text-body-sm font-medium text-clay shrink-0 mt-1 opacity-70 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                    <span className="text-body-sm font-medium text-clay shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                       {w.actionLabel}
                     </span>
                   </a>

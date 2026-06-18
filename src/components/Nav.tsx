@@ -149,10 +149,13 @@ export default function Nav() {
             ))}
           </ul>
 
-          {/* ── Desktop CTA (right) ───────────────────────── */}
-          <div className="hidden xl:block shrink-0">
+          {/* ── Desktop CTAs (right) ──────────────────────── */}
+          <div className="hidden xl:flex items-center gap-3 shrink-0">
             <Button variant="clay" href="/assessment" size="md" className="whitespace-nowrap">
               Take the free assessment
+            </Button>
+            <Button variant="sage-outline" href="/contact" size="md" className="whitespace-nowrap">
+              Book consultation
             </Button>
           </div>
 
@@ -268,8 +271,8 @@ export default function Nav() {
               })}
             </nav>
 
-            {/* CTA pinned to bottom */}
-            <div className="fixed bottom-0 left-0 right-0 p-6 bg-bone border-t border-line/10">
+            {/* CTAs pinned to bottom */}
+            <div className="fixed bottom-0 left-0 right-0 p-6 bg-bone border-t border-line/10 flex flex-col gap-3">
               <Button
                 variant="clay"
                 href="/assessment"
@@ -278,6 +281,15 @@ export default function Nav() {
                 arrow
               >
                 Take the free assessment
+              </Button>
+              <Button
+                variant="sage-outline"
+                href="/contact"
+                size="lg"
+                className="w-full justify-center"
+                arrow
+              >
+                Book consultation
               </Button>
             </div>
 
