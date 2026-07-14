@@ -84,6 +84,12 @@ html {
   background-color: var(--color-bone);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Clip stray horizontal overflow at the root. Without this, any element a
+     few px past the viewport makes mobile browsers EXPAND the layout viewport
+     (window.innerWidth grows past the visual viewport), which pushes the
+     fixed nav's right-aligned hamburger off-screen. `clip` (not `hidden`)
+     avoids creating a scroll container, so Lenis vertical scrolling is intact. */
+  overflow-x: clip;
 }
 
 body {
